@@ -24,17 +24,18 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-@Path("sample/dummy")
+@Path(DummyResource.PATH)
 @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 @Transactional(rollbackOn = Throwable.class)
 public class DummyResource
 {
-  private static final String ID_PARAMETER_NAME = "id";
-  private static final String ID_TEMPLATE       = "{" + ID_PARAMETER_NAME + "}";
+  public static final String PATH              = "sample/dummy";
+  public static final String ID_PARAMETER_NAME = "id";
+  public static final String ID_TEMPLATE       = "{" + ID_PARAMETER_NAME + "}";
 
   @Inject
-  DummyRepository             dummyRepository;
+  DummyRepository            dummyRepository;
 
   @GET
   public List<Dummy> getAll()
@@ -67,7 +68,7 @@ public class DummyResource
   }
 
   @POST
-  public Response create(Dummy dummy, @Context UriInfo uriInfo) throws URISyntaxException
+  public Response post(Dummy dummy, @Context UriInfo uriInfo) throws URISyntaxException
   {
     if (dummy.getId() != null)
     {

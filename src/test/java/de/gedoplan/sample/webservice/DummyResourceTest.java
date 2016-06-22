@@ -2,6 +2,7 @@ package de.gedoplan.sample.webservice;
 
 import static org.junit.Assert.*;
 
+import de.gedoplan.baselibs.utils.util.ApplicationProperties;
 import de.gedoplan.sample.entity.Dummy;
 
 import java.util.List;
@@ -26,7 +27,7 @@ import org.junit.runners.MethodSorters;
 public class DummyResourceTest
 {
   private static final String serverUrl           = "http://localhost:8080";
-  private static final String serverUrlWebContext = serverUrl + "/jee-std-war";
+  private static final String serverUrlWebContext = serverUrl + "/" + ApplicationProperties.getProperty("project.artifactId");
 
   private static Client       client;
   private static WebTarget    baseTarget;

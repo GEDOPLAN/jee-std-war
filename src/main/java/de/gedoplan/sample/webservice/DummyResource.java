@@ -47,7 +47,13 @@ public class DummyResource
   @Path(ID_TEMPLATE)
   public Dummy get(@PathParam(ID_PARAMETER_NAME) Long id)
   {
-    return this.dummyRepository.findById(id);
+    Dummy dummy = this.dummyRepository.findById(id);
+    if (dummy != null)
+    {
+      return dummy;
+    }
+
+    throw new NotFoundException("No entry found for id " + id);
   }
 
   @PUT
